@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="AIM-SLAM: Your Paper Subtitle Here">
+  <meta name="keywords" content="AIM-SLAM, SLAM, visual SLAM, localization, mapping">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIM-SLAM</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+    .video-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      .video-compare {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .video-compare video {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .video-compare .video-label {
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .result-grid img,
+    .result-grid video {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .image-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      .image-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .image-grid-4 img {
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    section.section {
+      padding: 3rem 1.5rem;
+    }
+
+    section.section.is-small {
+      padding: 2rem 1.5rem;
+    }
+
+    /* Placeholder styling for missing images/videos */
+    .placeholder-box {
+      background: linear-gradient(135deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .placeholder-box.is-16by9 {
+      aspect-ratio: 16 / 9;
+    }
+
+    .placeholder-box.is-4by3 {
+      aspect-ratio: 4 / 3;
+    }
+
+    .placeholder-box.is-square {
+      aspect-ratio: 1 / 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======== HERO ======== -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">AIM-SLAM</h1>
+            <h2 class="title is-3 publication-title" style="margin-top: -0.5rem;">
+              <!-- TODO: Replace with your paper subtitle -->
+              Dense Monocular SLAM via Adaptive and Informative Multi-View Keyframe Prioritization with Foundation Model
+            </h2>
+
+            <h2 class="title is-4 publication-title" style="margin-top: 0.5rem; margin-bottom: 0;">
+              <!-- TODO: Replace with conference/journal name -->
+              ICRA 2026
+            </h2>
+
+            <div class="is-size-5 publication-authors" style="margin-top: 1rem;">
+              <!-- TODO: Replace with actual authors -->
+              <span class="author-block">
+                <a href="#" target="_blank" rel="noopener noreferrer">Jinwoo Jeon</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#" target="_blank" rel="noopener noreferrer">Dong-Uk Seo</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#" target="_blank" rel="noopener noreferrer">Eungchang Mason Lee</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#" target="_blank" rel="noopener noreferrer">Hyun Myung</a><sup>1&dagger;</sup>
+              </span>
+            </div>
+
+            <div class="is-size-6 publication-authors" style="margin-top: 0.5rem;">
+              <!-- TODO: Replace with actual affiliations -->
+              <span class="author-block"><sup>1</sup>KAIST,</span>
+              <!-- <span class="author-block"><sup>2</sup>University B</span> -->
+            </div>
+            <div class="is-size-7" style="margin-top: 0.3rem; color: #777;">
+              <!-- <span><sup>*</sup>Equal contribution</span>&nbsp;&nbsp; -->
+              <span><sup>&dagger;</sup>Corresponding author</span>
+            </div>
+
+            <!-- Links -->
+            <div class="column has-text-centered" style="margin-top: 1rem;">
+              <div class="publication-links">
+                <!-- TODO: Update href when links are available -->
+                <span class="link-block">
+                  <a href="#" class="button is-normal is-rounded is-dark" style="pointer-events: none; opacity: 0.6;">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv (TBD)</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#" class="button is-normal is-rounded is-dark" style="pointer-events: none; opacity: 0.6;">
+                    <span class="icon">
+                      <i class="fas fa-file-alt"></i>
+                    </span>
+                    <span>Paper (TBD)</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#" class="button is-normal is-rounded is-dark" style="pointer-events: none; opacity: 0.6;">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video (TBD)</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#" class="button is-normal is-rounded is-dark" style="pointer-events: none; opacity: 0.6;">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (TBD)</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== ABSTRACT ======== -->
+  <section class="section is-small" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">Abstract</h2>
+          <div class="content has-text-justified">
+            <!-- TODO: Replace with your abstract -->
+            <p>
+              Recent advances in geometric foundation models have emerged as a promising alternative for addressing the
+              challenge of dense reconstruction in monocular visual simultaneous localization and mapping (SLAM).
+              Although geometric foundation models enable SLAM to leverage variable input views, the previous methods
+              remain confined to two-view pairs or fixed-length inputs without sufficient deliberation of geometric
+              context for view selection.
+            </p>
+            <p>
+              To tackle this problem, we propose AIM-SLAM, a dense monocular SLAM framework that exploits an adaptive
+              and informative multi-view keyframe prioritization with dense pointmap predictions from
+              visual geometry grounded transformer (VGGT).
+              Specifically, we introduce the selective information- and geometric-aware multi-view adaptation (SIGMA)
+              module,
+              which employs voxel overlap and information gain to retrieve a candidate set of keyframes and adaptively
+              determine its size.
+              Furthermore, we formulate a joint multi-view Sim(3) optimization that enforces consistent alignment across
+              selected views, substantially improving pose estimation accuracy.
+              The effectiveness of AIM-SLAM is demonstrated on real-world datasets, where it achieves state-of-the-art
+              performance in both pose estimation and dense reconstruction.
+              Our system supports ROS integration.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== MAIN DEMO / TEASER VIDEO ======== -->
+  <section class="section" id="demo">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Demo</h2>
+      <p class="has-text-centered" style="margin-bottom: 1.5rem;">
+        <!-- TODO: Replace with your demo description -->
+        AIM-SLAM achieves robust real-time SLAM performance across diverse environments.
+      </p>
+
+      <!-- Option A: Single teaser video -->
+      <div class="placeholder-box is-16by9" style="margin-bottom: 1rem;">
+        <span>
+          <i class="fas fa-video" style="font-size: 2rem; display: block; margin-bottom: 0.5rem;"></i>
+          Place your teaser video here<br>
+          <code>./static/videos/main/teaser.mp4</code>
+        </span>
+      </div>
+
+
+
+      <!-- ======== BIBTEX ======== -->
+      <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+          <h2 class="title">BibTeX</h2>
+          <pre><code>
+        @inproceedings{author2026aimslam,
+          title     = {AIM-SLAM: Your Full Title Here},
+          author    = {Author, One and Author, Two and Author, Three and Author, Four},
+          booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
+          year      = {2026}
+        }
+      </code></pre>
+        </div>
+      </section>
+
+
+
+
+
+      <!-- ======== FOOTER ======== -->
+      <footer class="footer">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-8">
+              <div class="content">
+                <p>
+                  Website template based on <a href="https://nerfies.github.io/">NeRFies</a>.
+                </p>
+                <p>
+                  This website is licensed under a <a rel="license"
+                    href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                    Commons Attribution-ShareAlike 4.0 International License</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+</body>
+
+</html>
